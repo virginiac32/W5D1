@@ -1,0 +1,28 @@
+<h1>Comment</h1>
+<%= @comment.content %>
+<%= @comment.user.username %>
+<%= @comment.post.title %>
+
+<h3>Responses</h3>
+<% @comment.child_comments.each do |comment| %>
+  <%= comment.content %>
+  <%= comment.user.username %>
+  <%= link_to "Go to comment", comment_url(comment) %>
+<% end %>
+
+<h4>Reply</h4>
+<form action="<%= comments_url %>" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="hidden" name="comment[parent_comment_id]" value="<%= @comment.id %>">
+  <input type="hidden" name="comment[post_id]" value="<%= @comment.post_id %>">
+
+  <label>Content
+    <input type="text" name="comment[content]">
+  </label>
+
+  <input type="submit" value="Post Comment">
+
+</form>
+
+<br>
+<%= link_to "Back to Post", post_url(@comment.post_id) %>

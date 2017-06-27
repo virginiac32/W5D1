@@ -1,0 +1,9 @@
+
+<% comment.child_comments.each do |ccomment| %>
+  <ul> *
+  <%= ccomment.content %>
+  <%= ccomment.user.username %>
+  <%= link_to "Go to comment", comment_url(ccomment) %>
+  <%= render "comment", comment: ccomment %>
+</ul>
+<% end %>

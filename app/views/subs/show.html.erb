@@ -1,0 +1,16 @@
+<h1> <%= @sub.title %> </h1>
+
+<ul>
+  <%= @sub.description %> , by <%= @sub.user.username %>
+</ul>
+
+<h2>Posts</h2>
+<% @sub.posts.each do |post| %>
+  <%= link_to post.title, post_url(post) %>
+  <br>
+  <%= link_to "Edit Post", edit_post_url(post) %>
+  <%= button_to "Remove Post", post_url(post), method: :delete %>
+  <br>
+<% end %>
+<br>
+<%= link_to "Make a new post", new_post_url%>
